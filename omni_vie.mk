@@ -14,36 +14,10 @@
 # limitations under the License.
 #
 
-## Specify phone tech before including full_phone
-$(call inherit-product, vendor/omni/config/gsm.mk)
-
-# Inherit from the common Open Source product configuration
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
-
-# Inherit some common Omni stuff.
-$(call inherit-product, vendor/omni/config/common.mk)
-
-# Charger
-PRODUCT_PACKAGES += \
-    charger_res_images \
-    charger
-
-# Root (inside recovery)
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.secure=0 \
-    ro.adb.secure=0 \
-    security.perf_harden=0 \
-    ro.allow.mock.location=1
-
-# USB
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    sys.usb.configfs=1 \
-    sys.usb.config=mtp,adb \
-    persist.sys.usb.config=manufacture,adb \
-    sys.usb.controller=ff100000.dwc3
+# Include hi3650 common
+$(call inherit-product, device/hisi/3650-common/device-common.mk)
 
 PRODUCT_NAME := omni_vie
 PRODUCT_DEVICE := vie
 PRODUCT_BRAND := Huawei
 PRODUCT_MODEL := HUAWEI-P9-PLUS
-PRODUCT_MANUFACTURER := HUAWEI
